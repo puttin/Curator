@@ -10,7 +10,7 @@ extension URL: CuratorLocation {
 
 extension URLComponents: CuratorLocation {
     public func asURL() throws -> URL {
-        guard let url = url else { throw CuratorError.invalidURL(url: self) }
+        guard let url = url else { throw CuratorError.invalidLocation(url: self) }
         return url
     }
 }

@@ -1,4 +1,4 @@
 public enum CuratorError: Error {
-    case invalidURL(url: CuratorLocation)
-    case urlIsNotFileURL
+    case invalidLocation(url: CuratorLocation)
+    case locationIsNotFile
 }

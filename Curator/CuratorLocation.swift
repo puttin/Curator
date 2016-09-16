@@ -7,12 +7,12 @@ extension CuratorLocation {
     func fileExist() throws -> FileExistResult {
         let url = try self.asURL()
         guard url.isFileURL else {
-            throw CuratorError.urlIsNotFileURL
+            throw CuratorError.locationIsNotFile
         }
         
         let path = url.path
         guard path.isEmpty == false else {
-            throw CuratorError.invalidURL(url: self)
+            throw CuratorError.invalidLocation(url: self)
         }
         
         var isDirectory: ObjCBool = false
