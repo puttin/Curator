@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		D2D9997B1D8C05CF0097EC78 /* Curator.h in Headers */ = {isa = PBXBuildFile; fileRef = D2D999791D8C05CF0097EC78 /* Curator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D2D999821D8C06CB0097EC78 /* CuratorSupportedDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D999811D8C06CB0097EC78 /* CuratorSupportedDirectory.swift */; };
+		D2D999841D8C06E10097EC78 /* CuratorUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D999831D8C06E10097EC78 /* CuratorUtility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D2D999761D8C05CF0097EC78 /* Curator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Curator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2D999791D8C05CF0097EC78 /* Curator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Curator.h; sourceTree = "<group>"; };
 		D2D9997A1D8C05CF0097EC78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D2D999811D8C06CB0097EC78 /* CuratorSupportedDirectory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuratorSupportedDirectory.swift; sourceTree = "<group>"; };
+		D2D999831D8C06E10097EC78 /* CuratorUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuratorUtility.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +50,8 @@
 		D2D999781D8C05CF0097EC78 /* Curator */ = {
 			isa = PBXGroup;
 			children = (
+				D2D999811D8C06CB0097EC78 /* CuratorSupportedDirectory.swift */,
+				D2D999831D8C06E10097EC78 /* CuratorUtility.swift */,
 				D2D999791D8C05CF0097EC78 /* Curator.h */,
 				D2D9997A1D8C05CF0097EC78 /* Info.plist */,
 			);
@@ -132,6 +138,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2D999821D8C06CB0097EC78 /* CuratorSupportedDirectory.swift in Sources */,
+				D2D999841D8C06E10097EC78 /* CuratorUtility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
