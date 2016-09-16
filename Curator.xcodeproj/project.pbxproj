@@ -11,6 +11,7 @@
 		D2D999821D8C06CB0097EC78 /* CuratorSupportedDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D999811D8C06CB0097EC78 /* CuratorSupportedDirectory.swift */; };
 		D2D999841D8C06E10097EC78 /* CuratorUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D999831D8C06E10097EC78 /* CuratorUtility.swift */; };
 		D2D999861D8C088C0097EC78 /* CuratorKeyLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D999851D8C088C0097EC78 /* CuratorKeyLocation.swift */; };
+		D2D999881D8C0D7B0097EC78 /* CuratorLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D999871D8C0D7B0097EC78 /* CuratorLocation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		D2D999811D8C06CB0097EC78 /* CuratorSupportedDirectory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuratorSupportedDirectory.swift; sourceTree = "<group>"; };
 		D2D999831D8C06E10097EC78 /* CuratorUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuratorUtility.swift; sourceTree = "<group>"; };
 		D2D999851D8C088C0097EC78 /* CuratorKeyLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuratorKeyLocation.swift; sourceTree = "<group>"; };
+		D2D999871D8C0D7B0097EC78 /* CuratorLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuratorLocation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				D2D999811D8C06CB0097EC78 /* CuratorSupportedDirectory.swift */,
+				D2D999871D8C0D7B0097EC78 /* CuratorLocation.swift */,
 				D2D999851D8C088C0097EC78 /* CuratorKeyLocation.swift */,
 				D2D999831D8C06E10097EC78 /* CuratorUtility.swift */,
 				D2D999791D8C05CF0097EC78 /* Curator.h */,
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2D999821D8C06CB0097EC78 /* CuratorSupportedDirectory.swift in Sources */,
+				D2D999881D8C0D7B0097EC78 /* CuratorLocation.swift in Sources */,
 				D2D999841D8C06E10097EC78 /* CuratorUtility.swift in Sources */,
 				D2D999861D8C088C0097EC78 /* CuratorKeyLocation.swift in Sources */,
 			);
