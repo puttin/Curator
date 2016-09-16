@@ -1,3 +1,3 @@
 import Foundation
 
-let fileManager = FileManager()
+let CuratorFileManager = FileManager()

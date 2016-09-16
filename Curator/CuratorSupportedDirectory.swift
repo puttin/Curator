@@ -23,7 +23,7 @@ public extension CuratorSupportedDirectory {
 private func getURLInUserDomain(
     for directory: FileManager.SearchPathDirectory
     ) -> URL? {
-    return fileManager.urls(for: directory, in: .userDomainMask).first
+    return CuratorFileManager.urls(for: directory, in: .userDomainMask).first
 }
 
 private let documentsDirectory: URL = {
