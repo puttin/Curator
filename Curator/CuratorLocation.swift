@@ -19,4 +19,14 @@ extension CuratorLocation {
         let fileExist = CuratorFileManager.fileExists(atPath: path, isDirectory: &isDirectory)
         return (fileExist, isDirectory.boolValue)
     }
+    
+    func fileReferenceURL() throws -> URL {
+        let url = try self.asURL() as NSURL
+        
+        guard let fileReferenceURL = url.fileReferenceURL() else {
+            throw CuratorError.cannotObtainFileReferenceURL(from: self)
+        }
+        
+        return fileReferenceURL as URL
+    }
 }
