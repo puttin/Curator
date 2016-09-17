@@ -33,14 +33,8 @@ extension CuratorLocation {
     func createDirectory() throws {
         let url = try self.asURL()
         let directoryURL: URL = {
-            if #available(iOS 9.0, OSX 10.11, *) {
-                if url.hasDirectoryPath {
-                    return url
-                }
-            } else {
-                if url.lastPathComponent.hasSuffix("/") {
-                    return url
-                }
+            if url.crt.hasDirectoryPath {
+                return url
             }
             
             return url.deletingLastPathComponent()

@@ -20,3 +20,24 @@ extension Data: CuratorKeepable {
         return self
     }
 }
+
+//MARK: Curator Extension for URL
+
+extension URL {
+    var crt: CuratorExtension<URL> {
+        return CuratorExtension(self)
+    }
+}
+
+extension CuratorExtensionProtocol where Base == URL {
+    var hasDirectoryPath: Bool {
+        if #available(iOS 9.0, OSX 10.11, *) {
+            return base.hasDirectoryPath
+        } else {
+            if base.lastPathComponent.hasSuffix("/") {
+                return true
+            }
+            return false
+        }
+    }
+}
