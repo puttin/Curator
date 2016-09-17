@@ -6,5 +6,6 @@ extension Curator {
         case unableToCreateDirectory(for: CuratorLocation)
         case locationIsDirectory(CuratorLocation)
         case locationFileExist(CuratorLocation)
+        case locationFileNotExist(CuratorLocation)
     }
 }
