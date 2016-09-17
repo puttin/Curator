@@ -105,4 +105,26 @@ extension Curator {
         
         try CuratorFileManager.moveItem(at: srcURL, to: dstURL)
     }
+    
+    public static func delete(
+        location: CuratorLocation,
+        allowDirectory: Bool = false,
+        checkFileExist: Bool = true
+        ) throws {
+        let url = try location.asURL()
+        
+        if !allowDirectory || checkFileExist {
+            let fileExistResult = try (url as CuratorLocation).fileExist()
+            
+            if !fileExistResult.fileExist {
+                throw Error.locationFileNotExist(location)
+            }
+            
+            if !allowDirectory && fileExistResult.isDirectory {
+                throw Error.locationIsDirectory(location)
+            }
+        }
+        
+        try CuratorFileManager.removeItem(at: url)
+    }
 }
