@@ -164,4 +164,21 @@ extension Curator {
         
         try CuratorFileManager.linkItem(at: srcURL, to: dstURL)
     }
+    
+    public static func createDirectory(
+        at location: CuratorLocation
+        ) throws {
+        let url = try location.asURL()
+        
+        let directoryURL: URL
+        if url.crt.hasDirectoryPath {
+            directoryURL = url
+        }
+        else {
+            directoryURL = url.appendingPathComponent("/")
+            assert(directoryURL.crt.hasDirectoryPath)
+        }
+        
+        try (directoryURL as CuratorLocation).createDirectory()
+    }
 }
