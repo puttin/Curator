@@ -7,12 +7,12 @@ extension CuratorLocation {
     func fileExist() throws -> FileExistResult {
         let url = try self.asURL()
         guard url.isFileURL else {
-            throw CuratorError.locationIsNotFile
+            throw CuratorError.unableToConvertToFileURL(from: self)
         }
         
         let path = url.path
         guard path.isEmpty == false else {
-            throw CuratorError.invalidLocation(url: self)
+            throw CuratorError.invalidLocation(self)
         }
         
         var isDirectory: ObjCBool = false
@@ -24,7 +24,7 @@ extension CuratorLocation {
         let url = try self.asURL() as NSURL
         
         guard let fileReferenceURL = url.fileReferenceURL() else {
-            throw CuratorError.cannotObtainFileReferenceURL(from: self)
+            throw CuratorError.unableToObtainFileReferenceURL(from: self)
         }
         
         return fileReferenceURL as URL
@@ -32,7 +32,6 @@ extension CuratorLocation {
     
     func createDirectory() throws {
         let url = try self.asURL()
-        assert(url.isFileURL)
         let directoryURL: URL = {
             if #available(iOS 9.0, OSX 10.11, *) {
                 if url.hasDirectoryPath {
