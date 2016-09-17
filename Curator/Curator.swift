@@ -6,21 +6,25 @@ extension Curator {
     public static func save(
         _ keepable: CuratorKeepable,
         to location: CuratorLocation,
-        options: Data.WritingOptions = [ .atomic]
+        options: Data.WritingOptions = [ .atomic],
+        checkFileExist: Bool = true
         ) throws {
         let url = try location.asURL()
         
-        let fileExistResult = try url.fileExist()
-        if fileExistResult.fileExist {
-            if fileExistResult.isDirectory {
-                throw Error.locationIsDirectory(location)
+        if checkFileExist {
+            let fileExistResult = try (url as CuratorLocation).fileExist()
+            if fileExistResult.fileExist {
+                if fileExistResult.isDirectory {
+                    throw Error.locationIsDirectory(location)
+                }
+                else if options.contains( .withoutOverwriting) {
+                    throw Error.locationFileExist(location)
+                }
             }
-            else if options.contains( .withoutOverwriting) {
-                throw Error.locationFileExist(location)
+            else {
+                try (url as CuratorLocation).createDirectory()
             }
         }
-        
-        try location.createDirectory()
         
         let data = try keepable.asData()
         
