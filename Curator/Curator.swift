@@ -3,7 +3,7 @@ public struct Curator {
 }
 
 extension Curator {
-    static func save(
+    public static func save(
         _ keepable: CuratorKeepable,
         to location: CuratorLocation,
         options: Data.WritingOptions = [ .atomic]
@@ -27,7 +27,7 @@ extension Curator {
         try data.write(to: url, options: options)
     }
     
-    static func getData(
+    public static func getData(
         from location: CuratorLocation,
         checkFileExist: Bool = true,
         options: Data.ReadingOptions = []
@@ -52,5 +52,16 @@ extension Curator {
         )
         
         return data
+    }
+    
+    private static func convertToFilePathURL(from location: CuratorLocation) throws -> URL {
+        let locationURL = try location.asURL()
+        let locationNSURL = locationURL as NSURL
+        
+        guard let resultURL = locationNSURL.filePathURL else {
+            throw Error.unableToConvertToFileURL(from: location)
+        }
+        
+        return resultURL
     }
 }
