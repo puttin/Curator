@@ -14,6 +14,7 @@
 		D2D999881D8C0D7B0097EC78 /* CuratorLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D999871D8C0D7B0097EC78 /* CuratorLocation.swift */; };
 		D2D9998A1D8C0EF60097EC78 /* CuratorError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D999891D8C0EF60097EC78 /* CuratorError.swift */; };
 		D2D9998C1D8C14CA0097EC78 /* CuratorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D9998B1D8C14CA0097EC78 /* CuratorExtension.swift */; };
+		D2D9998E1D8CF7520097EC78 /* Curator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D9998D1D8CF7520097EC78 /* Curator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		D2D999871D8C0D7B0097EC78 /* CuratorLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuratorLocation.swift; sourceTree = "<group>"; };
 		D2D999891D8C0EF60097EC78 /* CuratorError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuratorError.swift; sourceTree = "<group>"; };
 		D2D9998B1D8C14CA0097EC78 /* CuratorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuratorExtension.swift; sourceTree = "<group>"; };
+		D2D9998D1D8CF7520097EC78 /* Curator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Curator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 		D2D999781D8C05CF0097EC78 /* Curator */ = {
 			isa = PBXGroup;
 			children = (
+				D2D9998D1D8CF7520097EC78 /* Curator.swift */,
 				D2D999811D8C06CB0097EC78 /* CuratorSupportedDirectory.swift */,
 				D2D999871D8C0D7B0097EC78 /* CuratorLocation.swift */,
 				D2D999851D8C088C0097EC78 /* CuratorKeyLocation.swift */,
@@ -156,6 +159,7 @@
 				D2D999841D8C06E10097EC78 /* CuratorUtility.swift in Sources */,
 				D2D999861D8C088C0097EC78 /* CuratorKeyLocation.swift in Sources */,
 				D2D9998A1D8C0EF60097EC78 /* CuratorError.swift in Sources */,
+				D2D9998E1D8CF7520097EC78 /* Curator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
