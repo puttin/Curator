@@ -14,3 +14,9 @@ extension URLComponents: CuratorLocation {
         return url
     }
 }
+
+extension Data: CuratorKeepable {
+    public func asData() throws -> Data {
+        return self
+    }
+}
