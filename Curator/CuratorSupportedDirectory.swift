@@ -1,11 +1,13 @@
-public enum CuratorSupportedDirectory {
-    case documents
-    case caches
-    case applicationSupport
-    case tmp
+extension Curator {
+    public enum SupportedDirectory {
+        case documents
+        case caches
+        case applicationSupport
+        case tmp
+    }
 }
 
-public extension CuratorSupportedDirectory {
+public extension Curator.SupportedDirectory {
     var url: URL {
         switch self {
         case .documents:
