@@ -68,4 +68,41 @@ extension Curator {
         
         return resultURL
     }
+    
+    public static func move(
+        from src: CuratorLocation,
+        to dst:CuratorLocation,
+        checkFileExist: Bool = true
+        ) throws {
+        let srcURL = try convertToFilePathURL(from: src)
+        
+        if checkFileExist {
+            let srcFileExistResult = try (srcURL as CuratorLocation).fileExist()
+            
+            if !srcFileExistResult.fileExist {
+                throw Error.locationFileNotExist(src)
+            }
+        }
+        
+        let dstURL = try convertToFilePathURL(from: dst)
+        
+        if srcURL == dstURL {
+            return
+        }
+        
+        if checkFileExist {
+            let dstFileExistResult = try (dstURL as CuratorLocation).fileExist()
+            
+            if dstFileExistResult.fileExist {
+                if !dstFileExistResult.isDirectory {
+                    throw Error.locationFileExist(dst)
+                }
+            }
+            else {
+                try (dstURL as CuratorLocation).createDirectory()
+            }
+        }
+        
+        try CuratorFileManager.moveItem(at: srcURL, to: dstURL)
+    }
 }
