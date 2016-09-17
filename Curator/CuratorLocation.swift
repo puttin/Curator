@@ -29,4 +29,38 @@ extension CuratorLocation {
         
         return fileReferenceURL as URL
     }
+    
+    func createDirectory() throws {
+        let url = try self.asURL()
+        assert(url.isFileURL)
+        let directoryURL: URL = {
+            if #available(iOS 9.0, OSX 10.11, *) {
+                if url.hasDirectoryPath {
+                    return url
+                }
+            } else {
+                if url.lastPathComponent.hasSuffix("/") {
+                    return url
+                }
+            }
+            
+            return url.deletingLastPathComponent()
+        }()
+        
+        let directoryExistResult = try directoryURL.fileExist()
+        
+        if directoryExistResult.fileExist {
+            if directoryExistResult.isDirectory {
+                return
+            }
+            else {
+                throw CuratorError.unableToCreateDirectory(for: self)
+            }
+        }
+        
+        try CuratorFileManager.createDirectory(
+            at: directoryURL,
+            withIntermediateDirectories: true
+        )
+    }
 }
