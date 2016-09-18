@@ -32,13 +32,7 @@ extension CuratorLocation {
     
     func createDirectory() throws {
         let url = try self.asURL()
-        let directoryURL: URL = {
-            if url.crt.hasDirectoryPath {
-                return url
-            }
-            
-            return url.deletingLastPathComponent()
-        }()
+        let directoryURL = url.crt.getDirectoryURL()
         
         let directoryExistResult = try directoryURL.fileExist()
         

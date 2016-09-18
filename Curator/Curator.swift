@@ -170,14 +170,7 @@ extension Curator {
         ) throws {
         let url = try location.asURL()
         
-        let directoryURL: URL
-        if url.crt.hasDirectoryPath {
-            directoryURL = url
-        }
-        else {
-            directoryURL = url.appendingPathComponent("/")
-            assert(directoryURL.crt.hasDirectoryPath)
-        }
+        let directoryURL = url.crt.getDirectoryURL(greedy: true)
         
         try (directoryURL as CuratorLocation).createDirectory()
     }
