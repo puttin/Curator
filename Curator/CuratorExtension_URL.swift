@@ -9,8 +9,9 @@ extension CuratorExtensionProtocol where Base == URL {
         if #available(iOS 9.0, OSX 10.11, *) {
             return base.hasDirectoryPath
         } else {
-            let absoluteString = base.absoluteString
-            let lastPathComponent = base.lastPathComponent
+            let url = base.standardized
+            let absoluteString = url.absoluteString
+            let lastPathComponent = url.lastPathComponent
             let lastRange = absoluteString.range(of: lastPathComponent, options: .backwards)!
             
             if absoluteString.substring(from: lastRange.upperBound).hasPrefix("/") {

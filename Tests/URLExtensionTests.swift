@@ -12,6 +12,14 @@ class URLExtensionTests: XCTestCase {
     func testHasDirectoryPath() {
         XCTAssertFalse(fileURL.crt.hasDirectoryPath)
         XCTAssertTrue(directoryURL.crt.hasDirectoryPath)
+        
+        let directoryCurrentDirURL = directoryURL.appendingPathComponent(".", isDirectory: true)
+        let directoryCurrentDirURL2 = directoryURL.appendingPathComponent(".", isDirectory: false)
+        XCTAssertTrue(directoryCurrentDirURL.crt.hasDirectoryPath)
+        XCTAssertTrue(directoryCurrentDirURL2.crt.hasDirectoryPath)
+        
+        let webURL = URL(string: "https://api.shop.com/category/toy/../phone/./iphone/?json=true")!
+        XCTAssertTrue(webURL.crt.hasDirectoryPath)
     }
     
     func testGetDirectoryURL() {
