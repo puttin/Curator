@@ -1,3 +1,9 @@
+extension URL {
+    var crt: CuratorExtension<URL> {
+        return CuratorExtension(self)
+    }
+}
+
 extension CuratorExtensionProtocol where Base == URL {
     var hasDirectoryPath: Bool {
         if #available(iOS 9.0, OSX 10.11, *) {
@@ -41,7 +47,7 @@ extension Curator {
 
 extension CuratorExtensionProtocol where Base == URL {
     var fileExist: Curator.FileExistResult {
-        //here we assume url gets from CuratorLocation.crt.standardizedFileURL() throws
+        //here we assume url gets from CuratorLocation.standardizedFileURL() throws
         let url = base
         var isDirectory: ObjCBool = false
         let fileExist = CuratorFileManager.fileExists(atPath: url.path, isDirectory: &isDirectory)

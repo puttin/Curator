@@ -50,4 +50,20 @@ extension CuratorLocation {
             withIntermediateDirectories: true
         )
     }
+    
+    func standardizedFileURL() throws -> URL {
+        let location = self
+        let url = try location.asURL()
+        guard url.isFileURL else {
+            throw Curator.Error.unableToConvertToFileURL(from: location)
+        }
+        
+        let standardizedURL = url.standardized
+        let path = standardizedURL.path
+        guard !path.isEmpty else {
+            throw Curator.Error.invalidLocation(location)
+        }
+        
+        return standardizedURL
+    }
 }
