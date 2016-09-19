@@ -18,3 +18,9 @@ private func fileURL(
     ) -> URL {
     return directory.url.appendingPathComponent(key, isDirectory: isDirectory)
 }
+
+extension Curator.KeyLocation: Equatable {
+    public static func ==(lhs: Curator.KeyLocation, rhs: Curator.KeyLocation) -> Bool {
+        return lhs.directory == rhs.directory && lhs.key == rhs.key
+    }
+}
