@@ -14,7 +14,7 @@ extension CuratorExtension where Base: CuratorLocation {
         
         let standardizedURL = url.standardized
         let path = standardizedURL.path
-        guard path.isEmpty else {
+        guard !path.isEmpty else {
             throw Curator.Error.invalidLocation(location)
         }
         
