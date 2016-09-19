@@ -32,4 +32,21 @@ class URLExtensionTests: XCTestCase {
         let fileDirectoryURL = URL(string: "file:///file/")!
         XCTAssertEqual(fileDirectoryURL, fileURL.crt.getDirectoryURL(greedy: true))
     }
+    
+    func testFileExist() {
+        let tmpDirURL = Curator.SupportedDirectory.tmp.url
+        let tmpDirExistResult = tmpDirURL.crt.fileExist
+        XCTAssertTrue(tmpDirExistResult.fileExist)
+        XCTAssertTrue(tmpDirExistResult.isDirectory)
+        
+        let notExistFileURL = URL(string: "file:///notExistFile")!
+        let notExistFileExistResult = notExistFileURL.crt.fileExist
+        XCTAssertFalse(notExistFileExistResult.fileExist)
+        XCTAssertFalse(notExistFileExistResult.isDirectory)
+        
+        let hostsFileURL = URL(string: "file:///etc/hosts")!
+        let hostsFileExistResult = hostsFileURL.crt.fileExist
+        XCTAssertTrue(hostsFileExistResult.fileExist)
+        XCTAssertFalse(hostsFileExistResult.isDirectory)
+    }
 }
