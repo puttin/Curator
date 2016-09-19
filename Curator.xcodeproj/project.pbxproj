@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D2327A981D9012FB00A80734 /* CuratorExtension_CuratorLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2327A971D9012FB00A80734 /* CuratorExtension_CuratorLocation.swift */; };
 		D29AD27C1D8ECC5F008AC999 /* SupportedDirectoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29AD27A1D8ECC37008AC999 /* SupportedDirectoryTests.swift */; };
 		D2D9997B1D8C05CF0097EC78 /* Curator.h in Headers */ = {isa = PBXBuildFile; fileRef = D2D999791D8C05CF0097EC78 /* Curator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D2D999821D8C06CB0097EC78 /* CuratorSupportedDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D999811D8C06CB0097EC78 /* CuratorSupportedDirectory.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D2327A971D9012FB00A80734 /* CuratorExtension_CuratorLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuratorExtension_CuratorLocation.swift; sourceTree = "<group>"; };
 		D29AD27A1D8ECC37008AC999 /* SupportedDirectoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportedDirectoryTests.swift; sourceTree = "<group>"; };
 		D2D999761D8C05CF0097EC78 /* Curator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Curator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2D999791D8C05CF0097EC78 /* Curator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Curator.h; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				D2D9998B1D8C14CA0097EC78 /* CuratorExtension.swift */,
 				D2D999911D8D72EE0097EC78 /* CuratorExtension_Data.swift */,
 				D2D999931D8EBA600097EC78 /* CuratorExtension_URL.swift */,
+				D2327A971D9012FB00A80734 /* CuratorExtension_CuratorLocation.swift */,
 				D2D999791D8C05CF0097EC78 /* Curator.h */,
 				D2D9997A1D8C05CF0097EC78 /* Info.plist */,
 			);
@@ -232,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2D999821D8C06CB0097EC78 /* CuratorSupportedDirectory.swift in Sources */,
+				D2327A981D9012FB00A80734 /* CuratorExtension_CuratorLocation.swift in Sources */,
 				D2D999901D8D06300097EC78 /* CuratorKeepable.swift in Sources */,
 				D2D999881D8C0D7B0097EC78 /* CuratorLocation.swift in Sources */,
 				D2D999921D8D72EE0097EC78 /* CuratorExtension_Data.swift in Sources */,
