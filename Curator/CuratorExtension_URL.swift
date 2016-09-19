@@ -31,3 +31,23 @@ extension CuratorExtensionProtocol where Base == URL {
         return url
     }
 }
+
+extension Curator {
+    struct FileExistResult {
+        let fileExist: Bool
+        let isDirectory: Bool
+    }
+}
+
+extension CuratorExtensionProtocol where Base == URL {
+    var fileExist: Curator.FileExistResult {
+        //here we assume url gets from CuratorLocation.crt.standardizedFileURL() throws
+        let url = base
+        var isDirectory: ObjCBool = false
+        let fileExist = CuratorFileManager.fileExists(atPath: url.path, isDirectory: &isDirectory)
+        return Curator.FileExistResult(
+            fileExist: fileExist,
+            isDirectory: isDirectory.boolValue
+        )
+    }
+}
