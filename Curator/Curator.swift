@@ -9,10 +9,10 @@ extension Curator {
         options: Data.WritingOptions = [ .atomic],
         checkFileExist: Bool = true
         ) throws {
-        let url = try location.asURL()
+        let url = try location.standardizedFileURL()
         
         if checkFileExist {
-            let fileExistResult = try (url as CuratorLocation).fileExist()
+            let fileExistResult = url.crt.fileExist
             if fileExistResult.fileExist {
                 if fileExistResult.isDirectory {
                     throw Error.locationIsDirectory(location)
@@ -22,7 +22,7 @@ extension Curator {
                 }
             }
             else {
-                try (url as CuratorLocation).createDirectory()
+                try url.crt.createDirectory()
             }
         }
         
@@ -36,10 +36,10 @@ extension Curator {
         checkFileExist: Bool = true,
         options: Data.ReadingOptions = []
         ) throws -> Data {
-        let url = try location.asURL()
+        let url = try location.standardizedFileURL()
         
         if checkFileExist {
-            let fileExistResult = try url.fileExist()
+            let fileExistResult = url.crt.fileExist
             
             if !fileExistResult.fileExist {
                 throw Error.locationFileNotExist(location)
@@ -59,7 +59,7 @@ extension Curator {
     }
     
     private static func convertToFilePathURL(from location: CuratorLocation) throws -> URL {
-        let locationURL = try location.asURL()
+        let locationURL = try location.standardizedFileURL()
         let locationNSURL = locationURL as NSURL
         
         guard let resultURL = locationNSURL.filePathURL else {
@@ -77,7 +77,7 @@ extension Curator {
         let srcURL = try convertToFilePathURL(from: src)
         
         if checkFileExist {
-            let srcFileExistResult = try (srcURL as CuratorLocation).fileExist()
+            let srcFileExistResult = srcURL.crt.fileExist
             
             if !srcFileExistResult.fileExist {
                 throw Error.locationFileNotExist(src)
@@ -91,7 +91,7 @@ extension Curator {
         }
         
         if checkFileExist {
-            let dstFileExistResult = try (dstURL as CuratorLocation).fileExist()
+            let dstFileExistResult = dstURL.crt.fileExist
             
             if dstFileExistResult.fileExist {
                 if !dstFileExistResult.isDirectory {
@@ -99,7 +99,7 @@ extension Curator {
                 }
             }
             else {
-                try (dstURL as CuratorLocation).createDirectory()
+                try dstURL.crt.createDirectory()
             }
         }
         
@@ -111,10 +111,10 @@ extension Curator {
         allowDirectory: Bool = false,
         checkFileExist: Bool = true
         ) throws {
-        let url = try location.asURL()
+        let url = try location.standardizedFileURL()
         
         if !allowDirectory || checkFileExist {
-            let fileExistResult = try (url as CuratorLocation).fileExist()
+            let fileExistResult = url.crt.fileExist
             
             if !fileExistResult.fileExist {
                 throw Error.locationFileNotExist(location)
@@ -136,7 +136,7 @@ extension Curator {
         let srcURL = try convertToFilePathURL(from: src)
         
         if checkFileExist {
-            let srcFileExistResult = try (srcURL as CuratorLocation).fileExist()
+            let srcFileExistResult = srcURL.crt.fileExist
             
             if !srcFileExistResult.fileExist {
                 throw Error.locationFileNotExist(src)
@@ -150,7 +150,7 @@ extension Curator {
         }
         
         if checkFileExist {
-            let dstFileExistResult = try (dstURL as CuratorLocation).fileExist()
+            let dstFileExistResult = dstURL.crt.fileExist
             
             if dstFileExistResult.fileExist {
                 if !dstFileExistResult.isDirectory {
@@ -158,7 +158,7 @@ extension Curator {
                 }
             }
             else {
-                try (dstURL as CuratorLocation).createDirectory()
+                try dstURL.crt.createDirectory()
             }
         }
         
@@ -168,10 +168,10 @@ extension Curator {
     public static func createDirectory(
         at location: CuratorLocation
         ) throws {
-        let url = try location.asURL()
+        let url = try location.standardizedFileURL()
         
         let directoryURL = url.crt.getDirectoryURL(greedy: true)
         
-        try (directoryURL as CuratorLocation).createDirectory()
+        try directoryURL.crt.createDirectory()
     }
 }
