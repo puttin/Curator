@@ -4,7 +4,7 @@ public protocol CuratorLocation {
 
 extension CuratorLocation {
     func fileReferenceURL() throws -> URL {
-        let url = try self.asURL() as NSURL
+        let url = try self.standardizedFileURL() as NSURL
         
         guard let fileReferenceURL = url.fileReferenceURL() else {
             throw Curator.Error.unableToObtainFileReferenceURL(from: self)
