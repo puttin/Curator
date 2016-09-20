@@ -63,7 +63,7 @@ extension Curator {
         let locationNSURL = locationURL as NSURL
         
         guard let resultURL = locationNSURL.filePathURL else {
-            throw Error.unableToConvertToFileURL(from: location)
+            throw Error.unableToConvertToFilePathURL(from: location)
         }
         
         return resultURL
