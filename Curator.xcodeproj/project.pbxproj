@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D2327A9A1D901A0E00A80734 /* CuratorLocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2327A991D901A0E00A80734 /* CuratorLocationTests.swift */; };
+		D2327A9C1D9177B600A80734 /* PerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2327A9B1D9177B600A80734 /* PerformanceTests.swift */; };
 		D29AD27C1D8ECC5F008AC999 /* SupportedDirectoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29AD27A1D8ECC37008AC999 /* SupportedDirectoryTests.swift */; };
 		D2D9997B1D8C05CF0097EC78 /* Curator.h in Headers */ = {isa = PBXBuildFile; fileRef = D2D999791D8C05CF0097EC78 /* Curator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D2D999821D8C06CB0097EC78 /* CuratorSupportedDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D999811D8C06CB0097EC78 /* CuratorSupportedDirectory.swift */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		D2327A991D901A0E00A80734 /* CuratorLocationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuratorLocationTests.swift; sourceTree = "<group>"; };
+		D2327A9B1D9177B600A80734 /* PerformanceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformanceTests.swift; sourceTree = "<group>"; };
 		D29AD27A1D8ECC37008AC999 /* SupportedDirectoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportedDirectoryTests.swift; sourceTree = "<group>"; };
 		D2D999761D8C05CF0097EC78 /* Curator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Curator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2D999791D8C05CF0097EC78 /* Curator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Curator.h; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				D2D999A41D8EC6F70097EC78 /* URLExtensionTests.swift */,
 				D2327A991D901A0E00A80734 /* CuratorLocationTests.swift */,
 				D29AD27A1D8ECC37008AC999 /* SupportedDirectoryTests.swift */,
+				D2327A9B1D9177B600A80734 /* PerformanceTests.swift */,
 				D2D9999D1D8EC2E20097EC78 /* Info.plist */,
 			);
 			name = CuratorTests;
@@ -253,6 +256,7 @@
 			files = (
 				D2327A9A1D901A0E00A80734 /* CuratorLocationTests.swift in Sources */,
 				D29AD27C1D8ECC5F008AC999 /* SupportedDirectoryTests.swift in Sources */,
+				D2327A9C1D9177B600A80734 /* PerformanceTests.swift in Sources */,
 				D2D999A61D8EC7740097EC78 /* URLExtensionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
