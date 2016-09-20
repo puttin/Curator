@@ -56,4 +56,52 @@ extension CuratorExtensionProtocol where Base == URL {
             isDirectory: isDirectory.boolValue
         )
     }
+    
+    func createDirectory(
+        fileExistResult _urlFileExistResult: Curator.FileExistResult? = nil
+        ) throws {
+        //here we assume url gets from CuratorLocation.standardizedFileURL() throws
+        let url = base
+        let directoryURL = url.crt.getDirectoryURL()
+        
+        typealias FileExistResult = Curator.FileExistResult
+        let directoryExistResult: FileExistResult
+        if let urlFileExistResult = _urlFileExistResult,
+            url == directoryURL {
+            directoryExistResult = urlFileExistResult
+        }
+        else {
+            directoryExistResult = directoryURL.crt.fileExist
+        }
+        
+        if directoryExistResult.fileExist {
+            if directoryExistResult.isDirectory {
+                return
+            }
+            else {
+                throw Curator.Error.locationIsFile(directoryURL)
+            }
+        }
+        
+        //check parentDir
+        var parentDirectoryURL = directoryURL.deletingLastPathComponent()
+        while true {
+            let parentDirExistResult = parentDirectoryURL.crt.fileExist
+            if parentDirExistResult.fileExist {
+                if parentDirExistResult.isDirectory {
+                    break
+                }
+                else {
+                    throw Curator.Error.locationIsFile(parentDirectoryURL)
+                }
+            }
+            
+            parentDirectoryURL.deleteLastPathComponent()
+        }
+        
+        try CuratorFileManager.createDirectory(
+            at: directoryURL,
+            withIntermediateDirectories: true
+        )
+    }
 }

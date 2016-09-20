@@ -4,6 +4,7 @@ extension Curator {
         case unableToConvertToFileURL(from: CuratorLocation)
         case unableToObtainFileReferenceURL(from: CuratorLocation)
         case unableToCreateDirectory(for: CuratorLocation)
+        case locationIsFile(CuratorLocation)
         case locationIsDirectory(CuratorLocation)
         case locationFileExist(CuratorLocation)
         case locationFileNotExist(CuratorLocation)
