@@ -21,4 +21,12 @@ class CuratorLocationTests: XCTestCase {
         } catch Curator.Error.invalidLocation(_) {}
         catch { XCTFail() }
     }
+    
+    func testKeyLocationEquatable() {
+        typealias Location = Curator.KeyLocation
+        XCTAssertEqual(Location(key: "foo", directory: .tmp), Location(key: "foo", directory: .tmp))
+        XCTAssertNotEqual(Location(key: "foo", directory: .tmp), Location(key: "bar", directory: .tmp))
+        XCTAssertNotEqual(Location(key: "foo", directory: .tmp), Location(key: "foo", directory: .caches))
+        XCTAssertNotEqual(Location(key: "foo", directory: .tmp), Location(key: "bar", directory: .caches))
+    }
 }
