@@ -1,5 +1,5 @@
 import XCTest
-@testable import Curator
+import Curator
 
 class PerformanceTests: XCTestCase {
     typealias Location = Curator.KeyLocation
@@ -7,10 +7,7 @@ class PerformanceTests: XCTestCase {
     let uuidString: String = {
         let uuidString = UUID().uuidString
         let testDirLocation = Location(key: uuidString, directory: .tmp)
-        let testDirURL = try! testDirLocation.standardizedFileURL().crt.getDirectoryURL(greedy: true)
-        XCTAssertFalse(testDirURL.crt.fileExist.fileExist)
-        try! testDirURL.crt.createDirectory()
-        XCTAssertTrue(testDirURL.crt.fileExist.isDirectory)
+        try! Curator.createDirectory(at: testDirLocation)
         return uuidString
     }()
     
