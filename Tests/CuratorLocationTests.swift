@@ -22,6 +22,17 @@ class CuratorLocationTests: XCTestCase {
         catch { XCTFail() }
     }
     
+    func testFileReferenceURL() {
+        let tmpDirLocation = Curator.KeyLocation(key: ".", directory: .tmp)
+        let _ = try! tmpDirLocation.fileReferenceURL()
+        
+        let notExistLocation = Curator.KeyLocation(key: "file", directory: .tmp)
+        do {
+            let _ = try notExistLocation.fileReferenceURL()
+        } catch Curator.Error.unableToObtainFileReferenceURL(_) {}
+        catch { XCTFail() }
+    }
+    
     func testKeyLocationEquatable() {
         typealias Location = Curator.KeyLocation
         XCTAssertEqual(Location(key: "foo", directory: .tmp), Location(key: "foo", directory: .tmp))
