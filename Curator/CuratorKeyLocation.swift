@@ -1,7 +1,12 @@
 extension Curator {
     public struct KeyLocation {
-        let key: String
-        let directory: SupportedDirectory
+        public let key: String
+        public let directory: SupportedDirectory
+        
+        public init(key: String, directory: SupportedDirectory) {
+            self.key = key
+            self.directory = directory
+        }
     }
 }
 
