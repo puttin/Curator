@@ -71,6 +71,7 @@ class URLExtensionTests: XCTestCase {
         let fileLocationFakeDirURL = fileLocationURL.crt.getDirectoryURL(greedy: true)
         do {
             try fileLocationFakeDirURL.crt.createDirectory()
+            XCTFail()
         } catch Curator.Error.locationIsFile(let location) {
             let url = location as! URL
             XCTAssertEqual(url, fileLocationFakeDirURL)
@@ -82,6 +83,7 @@ class URLExtensionTests: XCTestCase {
         XCTAssertFalse(fileLocation2URL.crt.fileExist.fileExist)
         do {
             try fileLocation2URL.crt.createDirectory()
+            XCTFail()
         } catch Curator.Error.locationIsFile(let location) {
             let url = location as! URL
             XCTAssertEqual(url, fileLocationFakeDirURL)

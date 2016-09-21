@@ -11,6 +11,7 @@ class CuratorLocationTests: XCTestCase {
         let webURL = URL(string: "https://apple.com")!
         do {
             let _ = try webURL.standardizedFileURL()
+            XCTFail()
         } catch Curator.Error.unableToConvertToFileURL(_) {}
         catch { XCTFail() }
         
@@ -18,6 +19,7 @@ class CuratorLocationTests: XCTestCase {
         let emptyPathURL = URL(string: "file://user:password@localhost")!
         do {
             let _ = try emptyPathURL.standardizedFileURL()
+            XCTFail()
         } catch Curator.Error.invalidLocation(_) {}
         catch { XCTFail() }
     }
@@ -29,6 +31,7 @@ class CuratorLocationTests: XCTestCase {
         let notExistLocation = Curator.KeyLocation(key: "file", directory: .tmp)
         do {
             let _ = try notExistLocation.fileReferenceURL()
+            XCTFail()
         } catch Curator.Error.unableToObtainFileReferenceURL(_) {}
         catch { XCTFail() }
     }
