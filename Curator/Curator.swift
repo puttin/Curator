@@ -76,6 +76,14 @@ extension Curator {
         ) throws {
         let srcURL = try convertToFilePathURL(from: src)
         
+        if checkFileExist {
+            let srcFileExistResult = srcURL.crt.fileExist
+            
+            if !srcFileExistResult.fileExist {
+                throw Error.locationFileNotExist(src)
+            }
+        }
+        
         let dstURL = try dst.standardizedFileURL()
         
         if srcURL == dstURL {
@@ -124,6 +132,14 @@ extension Curator {
         checkFileExist: Bool = true
         ) throws {
         let srcURL = try convertToFilePathURL(from: src)
+        
+        if checkFileExist {
+            let srcFileExistResult = srcURL.crt.fileExist
+            
+            if !srcFileExistResult.fileExist {
+                throw Error.locationFileNotExist(src)
+            }
+        }
         
         let dstURL = try dst.standardizedFileURL()
         
