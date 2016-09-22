@@ -97,6 +97,14 @@ class CuratorTests: XCTestCase {
         let location2 = Location(key: "\(uuidString)/\(fileName2)", directory: .tmp)
         try! Curator.move(from: location1, to: location2)
         
+        do {
+            let fileName2 = UUID().uuidString
+            let location2 = Location(key: "\(uuidString)/\(fileName2)", directory: .tmp)
+            try Curator.move(from: location1, to: location2)
+            XCTFail()
+        } catch Curator.Error.locationFileNotExist(_) {}
+        catch { XCTFail() }
+        
         try! Curator.save(data, to: location1)
         
         do {
