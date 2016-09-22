@@ -119,5 +119,12 @@ class CuratorTests: XCTestCase {
         let dirLocation2 = Location(key: "\(uuidString)/dir2", directory: .tmp)
         
         try! Curator.move(from: dirLocation, to: dirLocation2)
+        
+        //A test to info me when `mv file dir/` style can be passed
+        do {
+            try! Curator.createDirectory(at: dirLocation)
+            try Curator.move(from: dirLocation, to: dirLocation2)
+            XCTFail("the mv style!")
+        } catch {}
     }
 }
