@@ -51,4 +51,31 @@ class CuratorTests: XCTestCase {
         } catch Curator.Error.locationFileNotExist(_) {}
         catch { XCTFail() }
     }
+    
+    func testDelete() {
+        let data = Data(count: 100)
+        let fileName = UUID().uuidString
+        let location = Location(key: "\(uuidString)/\(fileName)", directory: .tmp)
+        try! Curator.save(data, to: location)
+        
+        try! Curator.delete(location: location)
+        
+        do {
+            try Curator.delete(location: location)
+        } catch Curator.Error.locationFileNotExist(_) {}
+        catch { XCTFail() }
+        
+        let dirLocation = Location(key: "\(uuidString)/dir", directory: .tmp)
+        try! Curator.createDirectory(at: dirLocation)
+        
+        do {
+            try Curator.delete(location: dirLocation)
+        } catch Curator.Error.locationIsDirectory(_) {}
+        catch { XCTFail() }
+        
+        try! Curator.delete(
+            location: dirLocation,
+            allowDirectory: true
+        )
+    }
 }
