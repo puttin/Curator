@@ -78,4 +78,31 @@ class CuratorTests: XCTestCase {
             allowDirectory: true
         )
     }
+    
+    func testMove() {
+        let data = Data(count: 100)
+        let fileName1 = UUID().uuidString
+        let location1 = Location(key: "\(uuidString)/\(fileName1)", directory: .tmp)
+        try! Curator.save(data, to: location1)
+        
+        try! Curator.move(from: location1, to: location1)
+        
+        let fileName2 = UUID().uuidString
+        let location2 = Location(key: "\(uuidString)/\(fileName2)", directory: .tmp)
+        try! Curator.move(from: location1, to: location2)
+        
+        try! Curator.save(data, to: location1)
+        
+        do {
+            try Curator.move(from: location1, to: location2)
+        } catch Curator.Error.locationFileExist(_) {}
+        catch { XCTFail() }
+        
+        let dirLocation = Location(key: "\(uuidString)/dir", directory: .tmp, isDirectory: true)
+        try! Curator.createDirectory(at: dirLocation)
+        
+        let dirLocation2 = Location(key: "\(uuidString)/dir2", directory: .tmp)
+        
+        try! Curator.move(from: dirLocation, to: dirLocation2)
+    }
 }
