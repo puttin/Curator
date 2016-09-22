@@ -2,17 +2,23 @@ extension Curator {
     public struct KeyLocation {
         public let key: String
         public let directory: SupportedDirectory
+        public let isDirectory: Bool
         
-        public init(key: String, directory: SupportedDirectory) {
+        public init(
+            key: String,
+            directory: SupportedDirectory,
+            isDirectory: Bool = false
+            ) {
             self.key = key
             self.directory = directory
+            self.isDirectory = isDirectory
         }
     }
 }
 
 extension Curator.KeyLocation: CuratorLocation {
     public func asURL() throws -> URL {
-        return fileURL(of: key, inDirectory: directory)
+        return fileURL(of: key, inDirectory: directory, isDirectory: isDirectory)
     }
 }
 
