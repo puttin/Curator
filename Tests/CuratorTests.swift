@@ -22,11 +22,13 @@ class CuratorTests: XCTestCase {
         
         do {
             try Curator.save(data, to: location, options: .withoutOverwriting)
+            XCTFail()
         } catch Curator.Error.locationFileExist(_) {}
         catch { XCTFail() }
         
         do {
             try Curator.save(data, to: Curator.SupportedDirectory.tmp.url)
+            XCTFail()
         } catch Curator.Error.locationIsDirectory(_) {}
         catch { XCTFail() }
     }
@@ -42,12 +44,14 @@ class CuratorTests: XCTestCase {
         
         do {
             let _ = try Curator.getData(from: Curator.SupportedDirectory.tmp.url)
+            XCTFail()
         } catch Curator.Error.locationIsDirectory(_) {}
         catch { XCTFail() }
         
         do {
             let notExistFileLocation = Location(key: "\(uuidString)/notExistFile", directory: .tmp)
             let _ = try Curator.getData(from: notExistFileLocation)
+            XCTFail()
         } catch Curator.Error.locationFileNotExist(_) {}
         catch { XCTFail() }
     }
@@ -62,6 +66,7 @@ class CuratorTests: XCTestCase {
         
         do {
             try Curator.delete(location: location)
+            XCTFail()
         } catch Curator.Error.locationFileNotExist(_) {}
         catch { XCTFail() }
         
@@ -70,6 +75,7 @@ class CuratorTests: XCTestCase {
         
         do {
             try Curator.delete(location: dirLocation)
+            XCTFail()
         } catch Curator.Error.locationIsDirectory(_) {}
         catch { XCTFail() }
         
@@ -95,6 +101,7 @@ class CuratorTests: XCTestCase {
         
         do {
             try Curator.move(from: location1, to: location2)
+            XCTFail()
         } catch Curator.Error.locationFileExist(_) {}
         catch { XCTFail() }
         
