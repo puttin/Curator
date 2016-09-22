@@ -78,9 +78,7 @@ extension CuratorExtensionProtocol where Base == URL {
             if directoryExistResult.isDirectory {
                 return
             }
-            else {
-                throw Curator.Error.locationIsFile(directoryURL)
-            }
+            throw Curator.Error.locationIsFile(directoryURL)
         }
         
         //check parentDir
@@ -91,9 +89,7 @@ extension CuratorExtensionProtocol where Base == URL {
                 if parentDirExistResult.isDirectory {
                     break
                 }
-                else {
-                    throw Curator.Error.locationIsFile(parentDirectoryURL)
-                }
+                throw Curator.Error.locationIsFile(parentDirectoryURL)
             }
             
             parentDirectoryURL.deleteLastPathComponent()
