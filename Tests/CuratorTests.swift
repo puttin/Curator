@@ -30,4 +30,25 @@ class CuratorTests: XCTestCase {
         } catch Curator.Error.locationIsDirectory(_) {}
         catch { XCTFail() }
     }
+    
+    func testGet() {
+        let data = Data(count: 100)
+        let fileName = UUID().uuidString
+        let location = Location(key: "\(uuidString)/\(fileName)", directory: .tmp)
+        try! Curator.save(data, to: location)
+        
+        let dataGetted = try! Curator.getData(from: location)
+        XCTAssertEqual(data, dataGetted)
+        
+        do {
+            let _ = try Curator.getData(from: Curator.SupportedDirectory.tmp.url)
+        } catch Curator.Error.locationIsDirectory(_) {}
+        catch { XCTFail() }
+        
+        do {
+            let notExistFileLocation = Location(key: "\(uuidString)/notExistFile", directory: .tmp)
+            let _ = try Curator.getData(from: notExistFileLocation)
+        } catch Curator.Error.locationFileNotExist(_) {}
+        catch { XCTFail() }
+    }
 }
