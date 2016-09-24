@@ -26,7 +26,6 @@ class UtilityTests: XCTestCase {
     
     func testKeepableExtension() {
         let data = Data(count: 100)
-        let location = Curator.KeyLocation(key: "\(UUID().uuidString)", directory: .tmp)
-        try! data.crt.save(to: location)
+        try! data.crt.save(to: "\(UUID().uuidString)", in: .tmp)
     }
 }
