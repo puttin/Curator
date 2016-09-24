@@ -88,5 +88,9 @@ class URLExtensionTests: XCTestCase {
             let url = location as! URL
             XCTAssertEqual(url, fileLocationFakeDirURL)
         } catch { XCTFail() }
+        
+        //reuse fileExistResult
+        let testDirExistResult = testDirURL.crt.fileExist
+        try! testDirURL.crt.createDirectory(fileExistResult: testDirExistResult)
     }
 }
