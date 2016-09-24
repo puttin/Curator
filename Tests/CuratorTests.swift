@@ -127,4 +127,48 @@ class CuratorTests: XCTestCase {
             XCTFail("the mv style!")
         } catch {}
     }
+    
+    func testLink() {
+        let data = Data(count: 100)
+        let fileName1 = UUID().uuidString
+        let location1 = Location(key: "\(uuidString)/\(fileName1)", directory: .tmp)
+        try! Curator.save(data, to: location1)
+        
+        //it should be fine to link to same position
+        try! Curator.link(from: location1, to: location1)
+        
+        //it should be find to link file
+        let fileName2 = UUID().uuidString
+        let location2 = Location(key: "\(uuidString)/\(fileName2)", directory: .tmp)
+        try! Curator.link(from: location1, to: location2)
+        
+        //it cannot link to exist file
+        do {
+            try Curator.link(from: location1, to: location2)
+            XCTFail()
+        } catch Curator.Error.locationFileExist(_) {}
+        catch { XCTFail() }
+        
+        //it cannot link from not exist file
+        do {
+            try Curator.delete(location: location1)
+            try Curator.link(from: location1, to: location2)
+            XCTFail()
+        } catch Curator.Error.locationFileNotExist(_) {}
+        catch { XCTFail() }
+        
+        //it should support link dir
+        let dirLocation = Location(key: "\(uuidString)/dir", directory: .tmp, isDirectory: true)
+        try! Curator.createDirectory(at: dirLocation)
+        
+        let dirLocation2 = Location(key: "\(uuidString)/dir2", directory: .tmp)
+        try! Curator.link(from: dirLocation, to: dirLocation2)
+        
+        //A test to info me when `ln file dir/` style can be passed
+        do {
+            try Curator.save(data, to: location1)
+            try Curator.link(from: location1, to: dirLocation)
+            XCTFail("the ln style!")
+        } catch {}
+    }
 }
