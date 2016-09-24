@@ -6,24 +6,21 @@ extension Curator {
     public static func save(
         _ keepable: CuratorKeepable,
         to location: CuratorLocation,
-        options: Data.WritingOptions = [ .atomic],
-        checkFileExist: Bool = true
+        options: Data.WritingOptions = [ .atomic]
         ) throws {
         let url = try location.standardizedFileURL()
         
-        if checkFileExist {
-            let fileExistResult = url.crt.fileExist
-            if fileExistResult.fileExist {
-                if fileExistResult.isDirectory {
-                    throw Error.locationIsDirectory(location)
-                }
-                else if options.contains( .withoutOverwriting) {
-                    throw Error.locationFileExist(location)
-                }
+        let fileExistResult = url.crt.fileExist
+        if fileExistResult.fileExist {
+            if fileExistResult.isDirectory {
+                throw Error.locationIsDirectory(location)
             }
-            else {
-                try url.crt.createDirectory(fileExistResult: fileExistResult)
+            else if options.contains( .withoutOverwriting) {
+                throw Error.locationFileExist(location)
             }
+        }
+        else {
+            try url.crt.createDirectory(fileExistResult: fileExistResult)
         }
         
         let data = try keepable.asData()
@@ -33,21 +30,18 @@ extension Curator {
     
     public static func getData(
         from location: CuratorLocation,
-        checkFileExist: Bool = true,
         options: Data.ReadingOptions = []
         ) throws -> Data {
         let url = try location.standardizedFileURL()
         
-        if checkFileExist {
-            let fileExistResult = url.crt.fileExist
-            
-            if !fileExistResult.fileExist {
-                throw Error.locationFileNotExist(location)
-            }
-            
-            if fileExistResult.isDirectory {
-                throw Error.locationIsDirectory(location)
-            }
+        let fileExistResult = url.crt.fileExist
+        
+        if !fileExistResult.fileExist {
+            throw Error.locationFileNotExist(location)
+        }
+        
+        if fileExistResult.isDirectory {
+            throw Error.locationIsDirectory(location)
         }
         
         let data = try Data(
@@ -71,17 +65,14 @@ extension Curator {
     
     public static func move(
         from src: CuratorLocation,
-        to dst: CuratorLocation,
-        checkFileExist: Bool = true
+        to dst: CuratorLocation
         ) throws {
         let srcURL = try convertToFilePathURL(from: src)
         
-        if checkFileExist {
-            let srcFileExistResult = srcURL.crt.fileExist
-            
-            if !srcFileExistResult.fileExist {
-                throw Error.locationFileNotExist(src)
-            }
+        let srcFileExistResult = srcURL.crt.fileExist
+        
+        if !srcFileExistResult.fileExist {
+            throw Error.locationFileNotExist(src)
         }
         
         let dstURL = try dst.standardizedFileURL()
@@ -90,35 +81,30 @@ extension Curator {
             return
         }
         
-        if checkFileExist {
-            let dstFileExistResult = dstURL.crt.fileExist
-            
-            if dstFileExistResult.fileExist {
-                throw Error.locationFileExist(dst)
-            }
-            try dstURL.crt.createDirectory(fileExistResult: dstFileExistResult)
+        let dstFileExistResult = dstURL.crt.fileExist
+        
+        if dstFileExistResult.fileExist {
+            throw Error.locationFileExist(dst)
         }
+        try dstURL.crt.createDirectory(fileExistResult: dstFileExistResult)
         
         try CuratorFileManager.moveItem(at: srcURL, to: dstURL)
     }
     
     public static func delete(
         location: CuratorLocation,
-        allowDirectory: Bool = false,
-        checkFileExist: Bool = true
+        allowDirectory: Bool = false
         ) throws {
         let url = try location.standardizedFileURL()
         
-        if !allowDirectory || checkFileExist {
-            let fileExistResult = url.crt.fileExist
-            
-            if !fileExistResult.fileExist {
-                throw Error.locationFileNotExist(location)
-            }
-            
-            if !allowDirectory && fileExistResult.isDirectory {
-                throw Error.locationIsDirectory(location)
-            }
+        let fileExistResult = url.crt.fileExist
+        
+        if !fileExistResult.fileExist {
+            throw Error.locationFileNotExist(location)
+        }
+        
+        if !allowDirectory && fileExistResult.isDirectory {
+            throw Error.locationIsDirectory(location)
         }
         
         try CuratorFileManager.removeItem(at: url)
@@ -126,17 +112,14 @@ extension Curator {
     
     public static func link(
         from src: CuratorLocation,
-        to dst: CuratorLocation,
-        checkFileExist: Bool = true
+        to dst: CuratorLocation
         ) throws {
         let srcURL = try convertToFilePathURL(from: src)
         
-        if checkFileExist {
-            let srcFileExistResult = srcURL.crt.fileExist
-            
-            if !srcFileExistResult.fileExist {
-                throw Error.locationFileNotExist(src)
-            }
+        let srcFileExistResult = srcURL.crt.fileExist
+        
+        if !srcFileExistResult.fileExist {
+            throw Error.locationFileNotExist(src)
         }
         
         let dstURL = try dst.standardizedFileURL()
@@ -145,14 +128,12 @@ extension Curator {
             return
         }
         
-        if checkFileExist {
-            let dstFileExistResult = dstURL.crt.fileExist
-            
-            if dstFileExistResult.fileExist {
-                throw Error.locationFileExist(dst)
-            }
-            try dstURL.crt.createDirectory(fileExistResult: dstFileExistResult)
+        let dstFileExistResult = dstURL.crt.fileExist
+        
+        if dstFileExistResult.fileExist {
+            throw Error.locationFileExist(dst)
         }
+        try dstURL.crt.createDirectory(fileExistResult: dstFileExistResult)
         
         try CuratorFileManager.linkItem(at: srcURL, to: dstURL)
     }
