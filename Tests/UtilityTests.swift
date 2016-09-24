@@ -28,4 +28,12 @@ class UtilityTests: XCTestCase {
         let data = Data(count: 100)
         try! data.crt.save(to: "\(UUID().uuidString)", in: .tmp)
     }
+    
+    func testCuratorEasyGetData() {
+        let data = Data(count: 100)
+        let uuidString = UUID().uuidString
+        
+        try! data.crt.save(to: uuidString, in: .tmp)
+        let _ = try! Curator.getData(of: uuidString, in: .tmp)
+    }
 }
