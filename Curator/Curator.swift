@@ -151,9 +151,7 @@ extension Curator {
             let dstFileExistResult = dstURL.crt.fileExist
             
             if dstFileExistResult.fileExist {
-                if !dstFileExistResult.isDirectory {
-                    throw Error.locationFileExist(dst)
-                }
+                throw Error.locationFileExist(dst)
             }
             else {
                 try dstURL.crt.createDirectory()
