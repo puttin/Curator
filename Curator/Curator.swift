@@ -22,7 +22,7 @@ extension Curator {
                 }
             }
             else {
-                try url.crt.createDirectory()
+                try url.crt.createDirectory(fileExistResult: fileExistResult)
             }
         }
         
@@ -96,9 +96,7 @@ extension Curator {
             if dstFileExistResult.fileExist {
                 throw Error.locationFileExist(dst)
             }
-            else {
-                try dstURL.crt.createDirectory()
-            }
+            try dstURL.crt.createDirectory(fileExistResult: dstFileExistResult)
         }
         
         try CuratorFileManager.moveItem(at: srcURL, to: dstURL)
@@ -153,9 +151,7 @@ extension Curator {
             if dstFileExistResult.fileExist {
                 throw Error.locationFileExist(dst)
             }
-            else {
-                try dstURL.crt.createDirectory()
-            }
+            try dstURL.crt.createDirectory(fileExistResult: dstFileExistResult)
         }
         
         try CuratorFileManager.linkItem(at: srcURL, to: dstURL)
