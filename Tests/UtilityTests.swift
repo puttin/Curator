@@ -23,4 +23,10 @@ class UtilityTests: XCTestCase {
         } catch Curator.Error.invalidLocation(_) {}
         catch { XCTFail() }
     }
+    
+    func testKeepableExtension() {
+        let data = Data(count: 100)
+        let location = Curator.KeyLocation(key: "\(UUID().uuidString)", directory: .tmp)
+        try! data.crt.save(to: location)
+    }
 }
