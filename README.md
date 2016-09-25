@@ -1,4 +1,6 @@
 # Curator
+[![Build Status](https://travis-ci.org/puttin/Curator.svg?branch=master)](https://travis-ci.org/puttin/Curator)
+[![Codecov](https://codecov.io/gh/puttin/Curator/branch/master/graph/badge.svg)](https://codecov.io/gh/puttin/Curator)
 
 Curator is a lightweight key-value file manager written in Swift.
 
