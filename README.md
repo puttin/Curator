@@ -20,7 +20,7 @@ more usage can be found in `Tests`
 ## Installation
 
 ### CocoaPods
-`not implemnted yet`
+`pod 'Curator', :git => 'https://github.com/puttin/Curator.git'`
 
 ### Carthage
 `github "puttin/Curator"`
