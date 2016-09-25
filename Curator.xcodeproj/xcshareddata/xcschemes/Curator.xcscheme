@@ -28,7 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D2D999981D8EC2E20097EC78"
+               BuildableName = "CuratorTests.xctest"
+               BlueprintName = "CuratorTests"
+               ReferencedContainer = "container:Curator.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "D2D999751D8C05CF0097EC78"
+            BuildableName = "Curator.framework"
+            BlueprintName = "Curator"
+            ReferencedContainer = "container:Curator.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
