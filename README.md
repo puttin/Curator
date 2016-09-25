@@ -23,7 +23,7 @@ more usage can be found in `Tests`
 `not implemnted yet`
 
 ### Carthage
-`not implemnted yet`
+`github "puttin/Curator"`
 
 ### Manually
 use `git submodule` or anyway you like to add Curator as `Embedded Framework` or vendor sources.
