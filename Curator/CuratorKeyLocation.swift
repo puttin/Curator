@@ -1,3 +1,5 @@
+import Foundation
+
 extension Curator {
     public struct KeyLocation {
         public let key: String

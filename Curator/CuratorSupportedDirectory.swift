@@ -1,3 +1,5 @@
+import Foundation
+
 extension Curator {
     public enum SupportedDirectory {
         case documents

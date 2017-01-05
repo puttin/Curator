@@ -1,3 +1,5 @@
+import Foundation
+
 extension URL {
     var crt: CuratorExtension<URL> {
         return CuratorExtension(self)
